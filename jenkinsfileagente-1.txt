@@ -1,0 +1,15 @@
+curl.exe -sO http://localhost:8080/jnlpJars/agent.jar & java -jar agent.jar -url http://localhost:8080/ -secret 3b411c44b72555f7ec3fce66d8167afd93780ffb389cdae44da7d6de559f9ec2 -name "agente-1" -webSocket -workDir "C:\ProgramData\Jenkins\agent"
+dic 16, 2024 11:45:01 A.áM. org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using C:\ProgramData\Jenkins\agent\remoting as a remoting work directory
+dic 16, 2024 11:45:01 A.áM. org.jenkinsci.remoting.engine.WorkDirManager setupLogging
+INFO: Both error and output logs will be printed to C:\ProgramData\Jenkins\agent\remoting
+dic 16, 2024 11:45:01 A.áM. hudson.remoting.Launcher createEngine
+INFO: Setting up agent: agente-1
+dic 16, 2024 11:45:01 A.áM. hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 3283.v92c105e0f819
+dic 16, 2024 11:45:01 A.áM. org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using C:\ProgramData\Jenkins\agent\remoting as a remoting work directory
+dic 16, 2024 11:45:02 A.áM. hudson.remoting.Launcher$CuiListener status
+INFO: WebSocket connection open
+dic 16, 2024 11:45:02 A.áM. hudson.remoting.Launcher$CuiListener status
+INFO: Connected
