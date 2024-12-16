@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('GetCode') {
+            steps {
+                git 'https://github.com/isma40/ejerciciosunirismap.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo 'NO HAY QUE COMPILAR NADA. ESTO ES PYTHON'
+                bat "dir"
+            }
+        }
+        
+        stage('Tests') {
+            parallel {
+                stage('Unit') {
+                    steps {
+                        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                            bat '''
+                                set PYTHONPATH=%WORKSPACE%
+                                set PATH=C:\\Users\\USER\\AppData\\Local\\Programs\\Python\\python313\\Scripts;%PATH%
+                                pytest --junitxml=result-unit.xml test\\unit
+                            '''
+                        }
+                    }
+                }
+        
+                stage('Rest') {
+                    steps {
+                        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                            bat '''
+                                set FLASK_APP=app\\api.py
+                                start flask run
+                                set PYTHONPATH=%WORKSPACE%
+                                pytest --junitxml=result-rest.xml test\\rest
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+    
+        stage('Results') {
+            steps {
+                junit 'result*.xml'
+            }
+        }
+    }
+}
